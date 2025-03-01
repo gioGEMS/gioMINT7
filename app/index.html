@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>gioMINT</title>
+</head>
+<body>
+    <h1>gioMINT</h1>
+    <input id="userInput" type="text" placeholder="Say 'Make an NFT for my watch!'">
+    <button onclick="chat()">Mint It</button>
+    <p id="response"></p>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.4/dist/web3.min.js"></script>
+    <script src="app/mint.js"></script>
+    <script>
+        async function chat() {
+            let input = document.getElementById("userInput").value;
+            let response = document.getElementById("response");
+            let item = input.match(/for my (.*?)!/i)?.[1] || "stuff";
+            response.innerText = `Minting NFT for your ${item}...`;
+
+            let itemLink = `https://myitem.com/${item.replace(" ", "-")}`; // Fake link for now
+            await mintNFT(itemLink);
+            response.innerText = `NFT done for your ${item}! Check your wallet!`;
+        }
+    </script>
+</body>
+</html>
